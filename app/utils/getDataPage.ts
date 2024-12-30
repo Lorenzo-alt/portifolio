@@ -1,7 +1,7 @@
 import { QueryType } from '../types';
 import { fetchHygraphQuery } from './getDataHygraph';
 
-export const getDataPage = (): Promise<QueryType> => {
+export const getDataPage = async (): Promise<QueryType> => {
   const query = `
 query MyQuery {
   home(where: {id: "clzc08cne0dpp07lu0l4lbxfl"}) {
