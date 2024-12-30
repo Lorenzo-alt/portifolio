@@ -1,5 +1,5 @@
 'use server';
-import Conhecimentos from '../components/Conhecimentos';
+// import Conhecimentos from '../components/Conhecimentos';
 // import Contato from '../components/Contato';
 // import Projetos from '../components/Projetos';
 import { QueryType } from './types';
