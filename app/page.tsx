@@ -81,9 +81,10 @@ export default async function Home() {
   // console.log(resp.home.sessaoProjetos.listaProjetos);
   return (
     <section className='flex w-full flex-col items-center gap-5 overflow-y-scroll px-5 py-5 md:px-10 lg:px-0'>
-      <Conhecimentos dados={resp.home.sessaoConhecimentos} />
+      aaaa
+      {/* <Conhecimentos dados={resp.home.sessaoConhecimentos} />
       <Projetos dados={resp.home.sessaoProjetos.listaProjetos} />
-      <Contato dados={resp.home.sessaoContato} />
+      <Contato dados={resp.home.sessaoContato} /> */}
     </section>
     // <div>aaaa</div>
   );
