@@ -1,6 +1,6 @@
-import Conhecimentos from './components/Conhecimentos';
-import Contato from './components/Contato';
-import Projetos from './components/Projetos';
+import Conhecimentos from '../components/Conhecimentos';
+import Contato from '../components/Contato';
+import Projetos from '../components/Projetos';
 import { QueryType } from './types';
 import { fetchHygraphQuery } from './utils/getDataHygraph';
 
