@@ -8,7 +8,7 @@ import { getDataPage } from './utils/getDataPage';
 // import Contato from '../components/Contato';
 // import Projetos from '../components/Projetos';
 
-export default async function Home() {
+export default async function Page() {
   const resp = await getDataPage();
   // console.log(resp.home.sessaoProjetos.listaProjetos);
   return (
