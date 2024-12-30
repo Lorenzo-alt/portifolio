@@ -1,7 +1,7 @@
 'use server';
 import Conhecimentos from '../components/Conhecimentos';
 // import Contato from '../components/Contato';
-import Projetos from '../components/Projetos';
+// import Projetos from '../components/Projetos';
 import { QueryType } from './types';
 import { fetchHygraphQuery } from './utils/getDataHygraph';
 
@@ -86,7 +86,7 @@ export default async function Home() {
       ) : (
         <section className='flex w-full flex-col items-center gap-5 overflow-y-scroll px-5 py-5 md:px-10 lg:px-0'>
           <Conhecimentos dados={resp.home.sessaoConhecimentos} />
-          <Projetos dados={resp.home.sessaoProjetos.listaProjetos} />
+          {/* <Projetos dados={resp.home.sessaoProjetos.listaProjetos} /> */}
           {/* <Contato dados={resp.home.sessaoContato} /> */}
         </section>
       )}
