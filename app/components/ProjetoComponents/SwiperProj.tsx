@@ -1,15 +1,15 @@
 'use client';
+import Image from 'next/image';
+import React from 'react';
 import { A11y, Autoplay, Navigation, Pagination, Scrollbar } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { twMerge } from 'tailwind-merge';
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-
-import React from 'react';
-import { twMerge } from 'tailwind-merge';
 
 type typeProps = {
   dados: {
@@ -47,13 +47,31 @@ export default function SwiperProj(props: typeProps) {
         className='flex h-full w-full items-center justify-center text-center font-semibold text-white'
       >
         <SwiperSlide className={twMerge('flex w-full items-center justify-center bg-cover')}>
-          <img alt='Mock-Browser' src={props.dados.mockBrowser1?.url} className={twMerge('')} />
+          <Image
+            alt='Mock-Browser'
+            src={props.dados.mockBrowser1?.url}
+            height={0}
+            width={1980}
+            className={twMerge('')}
+          />
         </SwiperSlide>
         <SwiperSlide className={twMerge('flex w-full items-center justify-center bg-cover')}>
-          <img alt='Mock-Browser' src={props.dados.mockBrowser2?.url} className={twMerge('')} />
+          <Image
+            alt='Mock-Browser'
+            src={props.dados.mockBrowser2?.url}
+            height={0}
+            width={1980}
+            className={twMerge('')}
+          />
         </SwiperSlide>
         <SwiperSlide className={twMerge('flex w-full items-center justify-center bg-cover')}>
-          <img alt='Mock-Browser' src={props.dados.mockBrowser3?.url} className={twMerge('')} />
+          <Image
+            alt='Mock-Browser'
+            src={props.dados.mockBrowser3?.url}
+            height={0}
+            width={1980}
+            className={twMerge('')}
+          />
         </SwiperSlide>
       </Swiper>
     </div>

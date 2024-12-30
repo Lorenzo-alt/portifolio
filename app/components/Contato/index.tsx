@@ -3,7 +3,7 @@ import { SessaoContato } from '@/app/types';
 import Wave from '@/public/contato/wave-contact.svg';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { motion, useInView } from 'framer-motion';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { FiPhone } from 'react-icons/fi';
@@ -45,40 +45,43 @@ export default function Contato(props: typeProps) {
     setValues(JSON.stringify(data, null, 2));
   };
 
-  useEffect(() => {
-    if (values) enviarEmail(values);
-  }, [values]);
+  const enviarEmail = useCallback(
+    async (values: string) => {
+      setLoading(true);
+      toast.loading('Enviando...');
+      try {
+        const response = await fetch('/api/sendemail', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: values,
+        });
 
-  const [loading, setLoading] = useState<boolean>();
-
-  const enviarEmail = async (values: string) => {
-    setLoading(true);
-    toast.loading('Enviando...');
-    try {
-      const response = await fetch('/api/sendemail', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: values,
-      });
-
-      if (response.ok) {
-        setLoading(false);
-        toast.dismiss();
-        toast.success('Email enviado com sucesso!');
-        reset();
-      } else {
+        if (response.ok) {
+          setLoading(false);
+          toast.dismiss();
+          toast.success('Email enviado com sucesso!');
+          reset();
+        } else {
+          setLoading(false);
+          toast.dismiss();
+          toast.error('Ocorreu um erro no servidor, entre em contato pelo telefone!');
+        }
+      } catch (error) {
         setLoading(false);
         toast.dismiss();
         toast.error('Ocorreu um erro no servidor, entre em contato pelo telefone!');
       }
-    } catch (error) {
-      setLoading(false);
-      toast.dismiss();
-      toast.error('Ocorreu um erro no servidor, entre em contato pelo telefone!');
-    }
-  };
+    },
+    [reset],
+  );
+
+  useEffect(() => {
+    if (values) enviarEmail(values);
+  }, [values, enviarEmail]);
+
+  const [loading, setLoading] = useState<boolean>();
 
   const contatos = [
     {

@@ -19,6 +19,7 @@ export default function Projetos(props: typeProps) {
       animate={{ opacity: isInView ? 1 : 0 }}
       transition={{ duration: 0.6 }}
       ref={ref}
+      id='ProjetosSector'
       className='flex w-full flex-col items-center gap-5'
     >
       <Title titulo='projetos' />

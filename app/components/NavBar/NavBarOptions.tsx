@@ -17,7 +17,7 @@ const dados = [
   {
     nome: 'Curriculo',
     style: 'mt-[2px] rotate-[-3deg]',
-    link: '/',
+    link: '/curriculo',
     icon: <FaPaperclip className='size-[16px] fill-branco-secondario 2xl:size-[20px]' />,
   },
   {
@@ -28,13 +28,13 @@ const dados = [
   {
     nome: 'Github',
     style: 'mt-[2px] rotate-[3deg]',
-    link: '/',
+    link: 'https://github.com/Lorenzo-alt',
     icon: <FaGithub className='size-[16px] fill-branco-secondario 2xl:size-[20px]' />,
   },
   {
     nome: 'Linkedin',
     style: 'mt-[8px] rotate-[6deg]',
-    link: '/',
+    link: 'https://www.linkedin.com/in/lorenzo-juliati-46b918196/',
     icon: <FaLinkedin className='size-[16px] fill-branco-secondario 2xl:size-[20px]' />,
   },
 ];

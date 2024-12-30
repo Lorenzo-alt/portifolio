@@ -59,6 +59,8 @@ query MyQuery {
               }
             }
             url
+            urlGit
+            urlLive
           }
         }
       }

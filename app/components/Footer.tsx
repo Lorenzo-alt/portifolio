@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import { FaLinkedin } from 'react-icons/fa';
 import { FaGithub } from 'react-icons/fa6';
@@ -10,8 +11,12 @@ export default function Footer() {
         <p>(11) 98495-1943</p>
       </div>
       <div className='flex gap-2'>
-        <FaGithub className='size-[20px] fill-branco-secondario lg:size-[15px] 2xl:size-[20px]' />
-        <FaLinkedin className='size-[20px] fill-branco-secondario lg:size-[15px] 2xl:size-[20px]' />
+        <Link href={'https://github.com/Lorenzo-alt'} target='_blank' rel='noopener noreferrer'>
+          <FaGithub className='size-[20px] fill-branco-secondario lg:size-[15px] 2xl:size-[20px]' />
+        </Link>
+        <Link href={'https://www.linkedin.com/in/lorenzo-juliati-46b918196/'} target='_blank' rel='noopener noreferrer'>
+          <FaLinkedin className='size-[20px] fill-branco-secondario lg:size-[15px] 2xl:size-[20px]' />
+        </Link>
       </div>
     </div>
   );

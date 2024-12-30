@@ -42,12 +42,14 @@ query MyQuery {
         }
       }
     }
+    urlGit
+    urlLive
   }
 }
       `;
     const dados = fetchHygraphQuery(query, 60);
 
-    // dados.then((resp) => console.log(resp.home.sessaoProjetos));
+    // dados.then((resp) => console.log(resp));
 
     return dados as Promise<ProjetoType>;
   };

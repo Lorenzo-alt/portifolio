@@ -3,9 +3,9 @@ import { ProjetoModel } from '@/app/types';
 import { motion, useInView } from 'framer-motion';
 import React, { useRef } from 'react';
 
+import Title from '../Title';
 import EstudoDeCaso from './EstudoDeCaso';
 import SwiperProj from './SwiperProj';
-import Title from '../Title';
 
 type typeProps = {
   dados: ProjetoModel;

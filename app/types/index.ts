@@ -39,6 +39,8 @@ export type ProjetoModel = {
       url: string;
     };
   };
+  urlLive: string;
+  urlGit: string;
 };
 type FichaTecnica = {
   titulo: string;

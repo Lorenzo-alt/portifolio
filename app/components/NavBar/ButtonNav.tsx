@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaArrowUpRightFromSquare } from 'react-icons/fa6';
 import { twMerge } from 'tailwind-merge';
 
@@ -13,11 +13,29 @@ type typeProps = {
 
 export default function ButtonNav(props: typeProps) {
   const [inHover, setInHover] = useState<boolean>(false);
+  const openInAnotherTab = ['Curriculo', 'Linkedin', 'Github'].includes(props.nome);
+  const [handleClick, setHandleClick] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (handleClick) {
+      if (props.link == '/projetos') {
+        const element = document.getElementById('ProjetosSector');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+          setHandleClick(false);
+        }
+      }
+    }
+  }, [handleClick, props.link]);
+
   return (
     <Link
-      href={props.link}
+      href={props.link == '/projetos' || props.link == '/curriculo' ? '/' : props.link}
+      target={openInAnotherTab ? '_blank' : undefined}
+      rel={openInAnotherTab ? 'noopener noreferrer' : undefined}
       onMouseEnter={() => setInHover(true)}
       onMouseLeave={() => setInHover(false)}
+      onClick={() => setHandleClick(true)}
       className={twMerge(
         'relative flex size-[40px] cursor-pointer items-center justify-center rounded-[10px] bg-fundo-painel transition-all 2xl:size-[50px]',
         props.style,

@@ -30,6 +30,9 @@
   background-color: #3384DB;
   border-radius: 15px;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   color: rgb(var(--foreground-rgb));
