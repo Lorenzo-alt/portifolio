@@ -17,7 +17,7 @@ const dados = [
   {
     nome: 'Curriculo',
     style: 'mt-[2px] rotate-[-3deg]',
-    link: '/curriculo',
+    link: '/Curriculum.pdf',
     icon: <FaPaperclip className='size-[16px] fill-branco-secondario 2xl:size-[20px]' />,
   },
   {

@@ -22,15 +22,15 @@ export default function ButtonNav(props: typeProps) {
         const element = document.getElementById('ProjetosSector');
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
-          setHandleClick(false);
         }
+        setHandleClick(false);
       }
     }
   }, [handleClick, props.link]);
 
   return (
     <Link
-      href={props.link == '/projetos' || props.link == '/curriculo' ? '/' : props.link}
+      href={props.link == '/projetos' ? '/' : props.link}
       target={openInAnotherTab ? '_blank' : undefined}
       rel={openInAnotherTab ? 'noopener noreferrer' : undefined}
       onMouseEnter={() => setInHover(true)}

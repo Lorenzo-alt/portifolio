@@ -6,7 +6,7 @@ import { motion, useInView } from 'framer-motion';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { FiPhone } from 'react-icons/fi';
+import { FiMail, FiPhone } from 'react-icons/fi';
 import { z } from 'zod';
 
 import Spinner from '../Spinner';
@@ -85,10 +85,17 @@ export default function Contato(props: typeProps) {
 
   const contatos = [
     {
+      title: 'Contato',
       icon: <FiPhone size={18} className='text-azul-padrao transition' />,
       dado: props.dados.dados.telefone,
+      link: 'https://wa.me/5511984951943?text=Ol%C3%A1%20Lorenzo,%20tudo%20bem?',
     },
-    { icon: <FiPhone size={18} className='text-azul-padrao transition' />, dado: props.dados.dados.email },
+    {
+      title: 'Email',
+      icon: <FiMail size={18} className='text-azul-padrao transition' />,
+      dado: props.dados.dados.email,
+      link: `mailto:${props.dados.dados.email}`,
+    },
   ];
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -119,12 +126,16 @@ export default function Contato(props: typeProps) {
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 30 }}
                   transition={{ duration: 0.2, delay: index * 0.1 }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.open(item.link, '_blank');
+                  }}
                   key={index}
-                  className='flex items-center gap-2 rounded-[10px] bg-branco-terciario px-5 py-2.5 transition'
+                  className='flex cursor-pointer items-center gap-2 rounded-[10px] bg-branco-terciario px-5 py-2.5 transition'
                 >
                   <div className='flex items-center rounded-full bg-branco-quaternario p-2 transition'>{item.icon}</div>
                   <div className='flex flex-col text-black transition'>
-                    <h3 className='text-[14px] font-extrabold transition'>Contato</h3>
+                    <h3 className='text-[14px] font-extrabold transition'>{item.title}</h3>
                     <h4 className='text-[12px] transition'>{item.dado}</h4>
                   </div>
                 </motion.div>

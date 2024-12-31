@@ -1,7 +1,8 @@
 import { Projeto as ProjetoType } from '@/app/types';
 import { fetchHygraphQuery } from '@/app/utils/getDataHygraph';
-import Projeto from '@/components/ProjetoComponents/Projeto';
 import React from 'react';
+
+import Projeto from '@/components/ProjetoComponents/Projeto';
 
 type Props = {
   params: { url: string };
