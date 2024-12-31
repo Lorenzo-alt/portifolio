@@ -1,7 +1,7 @@
 'use server';
 import Conhecimentos from '../components/Conhecimentos';
-// import Contato from '../components/Contato';
-// import Projetos from '../components/Projetos';
+import Contato from '../components/Contato';
+import Projetos from '../components/Projetos';
 import { QueryType } from './types';
 import { fetchHygraphQuery } from './utils/getDataHygraph';
 
@@ -78,27 +78,23 @@ query MyQuery {
     return dados as QueryType;
   } catch (error) {
     console.error('Error in getDataPage:', error);
-    return null; // Retorne null se houver erro
+    return null;
   }
 };
 
 export default async function Home() {
   const resp = await getDataPage();
-  // console.log(resp.home.sessaoProjetos.listaProjetos);
   return (
     <>
       {!resp ? (
         <div>Loading...</div>
       ) : (
         <section className='flex w-full flex-col items-center gap-5 overflow-y-scroll px-5 py-5 md:px-10 lg:px-0'>
-          aaaa
           {resp.home.sessaoConhecimentos && <Conhecimentos dados={resp.home.sessaoConhecimentos} />}
-          {/* <Projetos dados={resp.home.sessaoProjetos.listaProjetos} /> */}
-          {/* <Contato dados={resp.home.sessaoContato} /> */}
+          {resp.home.sessaoProjetos && <Projetos dados={resp.home.sessaoProjetos.listaProjetos} />}
+          {resp.home.sessaoContato && <Contato dados={resp.home.sessaoContato} />}
         </section>
       )}
     </>
-
-    // <div>aaaa</div>
   );
 }
