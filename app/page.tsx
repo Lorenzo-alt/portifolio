@@ -1,11 +1,11 @@
 'use server';
-// import Conhecimentos from '../components/Conhecimentos';
+import Conhecimentos from '../components/Conhecimentos';
 // import Contato from '../components/Contato';
 // import Projetos from '../components/Projetos';
 import { QueryType } from './types';
 import { fetchHygraphQuery } from './utils/getDataHygraph';
 
-const getDataPage = (): Promise<QueryType> => {
+const getDataPage = async (): Promise<QueryType | null> => {
   const query = `
 query MyQuery {
   home(where: {id: "clzc08cne0dpp07lu0l4lbxfl"}) {
@@ -69,11 +69,17 @@ query MyQuery {
   }
 }
 `;
-  const dados = fetchHygraphQuery(query, 60);
 
-  // dados.then((resp) => console.log(resp.home.sessaoProjetos));
-
-  return dados as Promise<QueryType>;
+  try {
+    const dados = await fetchHygraphQuery(query, 60);
+    if (!dados || !dados.home) {
+      throw new Error('Invalid data structure');
+    }
+    return dados as QueryType;
+  } catch (error) {
+    console.error('Error in getDataPage:', error);
+    return null; // Retorne null se houver erro
+  }
 };
 
 export default async function Home() {
@@ -86,7 +92,7 @@ export default async function Home() {
       ) : (
         <section className='flex w-full flex-col items-center gap-5 overflow-y-scroll px-5 py-5 md:px-10 lg:px-0'>
           aaaa
-          {/* <Conhecimentos dados={resp.home.sessaoConhecimentos} /> */}
+          {resp.home.sessaoConhecimentos && <Conhecimentos dados={resp.home.sessaoConhecimentos} />}
           {/* <Projetos dados={resp.home.sessaoProjetos.listaProjetos} /> */}
           {/* <Contato dados={resp.home.sessaoContato} /> */}
         </section>

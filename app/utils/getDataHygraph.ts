@@ -1,20 +1,27 @@
-export const fetchHygraphQuery = async <T>(query: string, revalidate?: number): Promise<T> => {
-  const response = await fetch(process.env.HYGRAPH_URL!, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-      Authorization: `Bearer ${process.env.HYGRAPH_TOKEN}`,
-    },
-    next: {
-      revalidate,
-    },
-    body: JSON.stringify({
-      query,
-    }),
-  });
+export const fetchHygraphQuery = async (query: string, revalidate?: number) => {
+  try {
+    const response = await fetch(process.env.HYGRAPH_URL!, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${process.env.HYGRAPH_TOKEN}`,
+      },
+      next: {
+        revalidate,
+      },
+      body: JSON.stringify({ query }),
+    });
 
-  const { data } = await response.json();
+    if (!response.ok) {
+      throw new Error(`Error fetching data: ${response.statusText}`);
+    }
 
-  return data;
+    const data = await response.json();
+    console.log(data.data, 'olaaaaaaaaa');
+    return data.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return null; // Retorne null para evitar undefined
+  }
 };
