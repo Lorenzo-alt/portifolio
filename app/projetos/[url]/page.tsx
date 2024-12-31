@@ -1,4 +1,3 @@
-
 import { Projeto as ProjetoType } from '@/app/types';
 import { fetchHygraphQuery } from '@/app/utils/getDataHygraph';
 import Projeto from '@/components/ProjetoComponents/Projeto';
@@ -9,7 +8,7 @@ type Props = {
 };
 
 export default async function Page({ params }: Props) {
-  const getDataPage = (): Promise<ProjetoType> => {
+  const getDataPage = async (): Promise<ProjetoType | null> => {
     const query = `
 query MyQuery {
   projetoModels(where: {url: "${params.url}"}) {
@@ -48,18 +47,24 @@ query MyQuery {
   }
 }
       `;
-    const dados = fetchHygraphQuery(query, 60);
+    try {
+      const dados = await fetchHygraphQuery(query, 60);
 
-    // dados.then((resp) => console.log(resp));
-
-    return dados as Promise<ProjetoType>;
+      if (!dados || !dados.projetoModels) {
+        throw new Error('Invalid data structure');
+      }
+      return dados as ProjetoType;
+    } catch (error) {
+      console.error('Error in getDataPage:', error);
+      return null;
+    }
   };
 
   const resp = await getDataPage();
 
   return (
     <section className='flex w-full flex-col items-center gap-5 overflow-y-scroll px-5 py-5 md:px-10 lg:px-0'>
-      <Projeto dados={resp.projetoModels![0]} />
+      {resp && <Projeto dados={resp.projetoModels![0]} />}
     </section>
   );
 }
